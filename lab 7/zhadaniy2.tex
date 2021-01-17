@@ -1,0 +1,100 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\usepackage{verbatim}
+\begin{document}
+\begin{center}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=4cm,on grid,auto]
+ \tikzstyle{every state}=[fill={rgb:black,1;white,10}]
+
+\node[state] (b1) {$b_1$};
+\node[state] (b2) [right of=b1]  {$b_2$};
+\node[state] (b3) [right of=b2]  {$b_3$};
+\node[state] (b4) [below of=b1]  {$b_4$};
+\node[state] (b5) [right of=b4]  {$b_5$};
+\node[state] (b6) [right of=b5]  {$b_6$};
+
+\path[->] (b1) edge node [above] {$z_3$} (b2);
+\path[->] (b3) edge node [above] {$z_2$} (b2);
+\path[->] (b4) edge node [left] {$z_1$} (b1);
+\path[->] (b5) edge node [above] {$z_2$} (b4);
+\path[->] (b1) edge node [above] {$z_2$} (b5);
+\path[->] (b5) edge node [right] {$z_3$} (b3);
+\path[->] (b2) edge node [left] {$z_1$} (b6);
+\path[->] (b6) edge node [right] {$z_3$} (b3);
+\path[->] (b2) edge node [right] {$z$} (b5);
+
+
+\path[->] (b1) edge  [loop left]  node [left] {$z_1$} ();
+\path[->] (b2) edge  [loop above]  node [above] {$z_2$} ();
+\path[->] (b4) edge  [loop left]  node [left] {$z_3$} ();
+
+\path[->] (b3) edge [bend left = 20]  node [right] {$z_1$} (b6);
+\path[->] (b6) edge [bend left = 20]  node [below] {$z_2$} (b4);
+
+\end{tikzpicture}
+\end{center}
+
+%draw the edge(line) from b_2 to b_5
+
+
+
+\begin{comment}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (39.8,-38.1) circle (3);
+\draw (39.8,-38.1) node {$b_5$};
+\draw [black] (60.4,-38.1) circle (3);
+\draw (60.4,-38.1) node {$b_6$};
+\draw [black] (18.1,-38.1) circle (3);
+\draw (18.1,-38.1) node {$b_4$};
+\draw [black] (18.1,-14.6) circle (3);
+\draw (18.1,-14.6) node {$b_1$};
+\draw [black] (39.2,-14.6) circle (3);
+\draw (39.2,-14.6) node {$b_2$};
+\draw [black] (60.4,-14.6) circle (3);
+\draw (60.4,-14.6) node {$b_3$};
+\draw [black] (18.1,-35.1) -- (18.1,-17.6);
+\fill [black] (18.1,-17.6) -- (17.6,-18.4) -- (18.6,-18.4);
+\draw (18.6,-26.35) node [right] {$z_1$};
+\draw [black] (21.1,-14.6) -- (36.2,-14.6);
+\fill [black] (36.2,-14.6) -- (35.4,-14.1) -- (35.4,-15.1);
+\draw (28.65,-15.1) node [below] {$z_3$};
+\draw [black] (20.14,-16.8) -- (37.76,-35.9);
+\fill [black] (37.76,-35.9) -- (37.59,-34.97) -- (36.85,-35.65);
+\draw (28.42,-27.81) node [left] {$z_2$};
+\draw [black] (36.8,-38.1) -- (21.1,-38.1);
+\fill [black] (21.1,-38.1) -- (21.9,-38.6) -- (21.9,-37.6);
+\draw (28.95,-37.6) node [above] {$z_2$};
+\draw [black] (15.42,-39.423) arc (-36:-324:2.25);
+\draw (10.85,-38.1) node [left] {$z_3$};
+\fill [black] (15.42,-36.78) -- (15.07,-35.9) -- (14.48,-36.71);
+\draw [black] (15.42,-15.923) arc (-36:-324:2.25);
+\draw (10.85,-14.6) node [left] {$z_1$};
+\fill [black] (15.42,-13.28) -- (15.07,-12.4) -- (14.48,-13.21);
+\draw [black] (37.877,-11.92) arc (234:-54:2.25);
+\draw (39.2,-7.35) node [above] {$z_2$};
+\fill [black] (40.52,-11.92) -- (41.4,-11.57) -- (40.59,-10.98);
+\draw [black] (41.21,-16.83) -- (58.39,-35.87);
+\fill [black] (58.39,-35.87) -- (58.23,-34.94) -- (57.48,-35.61);
+\draw (50.34,-24.89) node [above] {$z_1$};
+\draw [black] (41.78,-35.84) -- (58.42,-16.86);
+\fill [black] (58.42,-16.86) -- (57.52,-17.13) -- (58.27,-17.79);
+\draw (49.56,-24.9) node [above] {$z_3$};
+\draw [black] (57.4,-14.6) -- (42.2,-14.6);
+\fill [black] (42.2,-14.6) -- (43,-15.1) -- (43,-14.1);
+\draw (49.8,-14.1) node [above] {$z_2$};
+\draw [black] (60.4,-35.1) -- (60.4,-17.6);
+\fill [black] (60.4,-17.6) -- (59.9,-18.4) -- (60.9,-18.4);
+\draw (60.9,-26.35) node [right] {$z_3$};
+\draw [black] (62.205,-16.992) arc (32.14424:-32.14424:17.588);
+\fill [black] (62.2,-35.71) -- (63.05,-35.3) -- (62.21,-34.76);
+\draw (65.4,-26.35) node [right] {$z_1$};
+\draw [black] (57.768,-39.539) arc (-63.41606:-116.58394:41.381);
+\fill [black] (20.73,-39.54) -- (21.22,-40.34) -- (21.67,-39.45);
+\draw (39.25,-44.41) node [below] {$z_2$};
+\end{tikzpicture}
+\end{comment}
+\end{document}
